@@ -8,22 +8,16 @@ const Content = (props) => {
     const [title, setTitle] = useState('');
 
     const getInfo = async () => {
+        if (CurrentURL === '/') {
+            CurrentURL = '/home'
+        }
         try {
-            if (CurrentURL === '/') {
-                await axiosApi.get('home.json').then(response => {
-                    if (response.data !== null) {
-                        setText(response.data.text);
-                        setTitle(response.data.title);
-                    }
-                });
-            } else {
-                await axiosApi.get(`${CurrentURL}` + '.json').then(response => {
-                    if (response.data !== null) {
-                        setText(response.data.text);
-                        setTitle(response.data.title);
-                    }
-                })
-            }
+            await axiosApi.get(`${CurrentURL}` + '.json').then(response => {
+                if (response.data !== null) {
+                    setText(response.data.text);
+                    setTitle(response.data.title);
+                }
+            })
         } catch (e) {
             console.log(e)
         }
@@ -36,7 +30,7 @@ const Content = (props) => {
     return (
         <div>
             <h2>{title}</h2>
-            <p>{text}</p>
+            <p className="text">{text}</p>
         </div>
     )
 };
