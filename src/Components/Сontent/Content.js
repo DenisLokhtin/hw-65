@@ -30,7 +30,7 @@ const Content = (props) => {
     return (
         <div>
             <h2>{title}</h2>
-            <p className="text">{text}</p>
+            <p className="text" dangerouslySetInnerHTML={{ __html: text }}/>
         </div>
     )
 };

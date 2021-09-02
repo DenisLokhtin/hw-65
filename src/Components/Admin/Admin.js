@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import 'react-quill/dist/quill.snow.css';
+import ReactQuill from 'react-quill';
 import axiosApi from "../../AxiosApi";
 import './Admin.css'
 
@@ -52,7 +54,7 @@ const Admin = (props) => {
                     <p>Title</p>
                     <input onChange={(e) => setTitle(e.target.value)} type="text" defaultValue={title}/>
                     <p>Content</p>
-                    <textarea onChange={(e) => setText(e.target.value)} cols="90" rows="10" defaultValue={text}/>
+                    <ReactQuill onChange={(value) => setText(value)} value={text}/>
                     <div>
                         <button type="submit" className="btn-send">Send</button>
                     </div>
